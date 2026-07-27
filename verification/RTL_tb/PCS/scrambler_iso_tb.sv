@@ -174,7 +174,7 @@ module scrambler_iso_tb;
     
     @(posedge clk);
     i_valid    <= 1'b1;
-    i_enc_data <= {{>>{last_block.bytes[0:7]}}, 2'b01};
+    i_enc_data <= i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     
     repeat (2) @(posedge clk);
     i_valid <= 1'b0;
@@ -221,7 +221,7 @@ module scrambler_iso_tb;
     
     @(posedge clk);
     i_valid    <= 1'b1;
-    i_enc_data <= {{>>{last_block.bytes[0:7]}}, 2'b01};
+    i_enc_data <= i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     
     @(posedge clk);
     i_enc_data[1:0] <= 2'b10;
@@ -317,7 +317,7 @@ module scrambler_iso_tb;
     
     @(posedge clk);
     i_valid    <= 1'b1;
-    i_enc_data <= {{>>{last_block.bytes[0:7]}}, 2'b01};
+    i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     
     @(posedge clk);
     i_valid <= 1'b0;
@@ -348,25 +348,25 @@ module scrambler_iso_tb;
     //   *: this verifies reset actually clears state to a known value.
     @(posedge clk);
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w1 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w1 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w2 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w2 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w3 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w3 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w4 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w4 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w5 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w5 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w6 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w6 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w7 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w7 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w8 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w8 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w9 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w9 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     last_block = eth_frame_pkg::gen_random_payload(8);
-    w10 = {{>>{last_block.bytes[0:7]}}, 2'b01};
+    w10 = i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
     
     feed_10_row(.w1(w1), .w2(w2), .w3(w3), .w4(w4), .w5(w5), .w6(w6), .w7(w7), .w8(w8), .w9(w9), .w10(w10),
             .y1(Y1), .y2(Y2), .y3(Y3), .y4(Y4), .y5(Y5), .y6(Y6), .y7(Y7), .y8(Y8), .y9(Y9), .y10(Y10));
@@ -393,7 +393,7 @@ module scrambler_iso_tb;
     for (i=0; i < 2000; i++) begin
         last_block = eth_frame_pkg::gen_random_payload(8);
         @(posedge clk);
-        i_enc_data <= {{>>{last_block.bytes[0:7]}}, 2'b01};
+        i_enc_data <= i_enc_data <= {last_block.bytes[7], last_block.bytes[6], last_block.bytes[5], last_block.bytes[4], last_block.bytes[3], last_block.bytes[2], last_block.bytes[1], last_block.bytes[0], 2'b01};
         @(negedge clk);
         if ($isunknown(o_scram_data)) begin
             $display("  FAIL [%s]: unknown values in output.", "test 6");
